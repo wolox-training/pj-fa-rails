@@ -41,6 +41,11 @@ group :development, :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem 'rubocop', '~> 0.59.2', require: false
+  #TEST
+  gem 'rspec-rails', '~> 3.8'
+  gem 'database_cleaner'
+  gem 'factory_bot_rails'
+  gem 'shoulda-matchers'
 end
 
 group :development do
