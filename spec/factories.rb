@@ -1,6 +1,13 @@
 require 'faker'
 
 FactoryBot.define do
+  factory :rent do
+    association :user
+    association :book
+    start_date { Faker::Date }
+    end_date { Faker::Date }
+  end
+
   factory :book do
     gender { Faker::Book.genre }
     author { Faker::Book.author }
