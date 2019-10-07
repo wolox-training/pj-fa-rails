@@ -41,7 +41,9 @@ group :development, :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem 'rubocop', '~> 0.59.2', require: false
-  #TEST
+end
+
+group :test do
   gem 'rspec-rails', '~> 3.8'
   gem 'database_cleaner', '~> 1.7.0'
   gem 'factory_bot_rails', '~> 5.1.1'
