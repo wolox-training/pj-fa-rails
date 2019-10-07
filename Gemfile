@@ -32,7 +32,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'devise_token_auth'
+gem 'devise_token_auth', '~> 1.1.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -43,9 +43,10 @@ group :development, :test do
   gem 'rubocop', '~> 0.59.2', require: false
   #TEST
   gem 'rspec-rails', '~> 3.8'
-  gem 'database_cleaner'
-  gem 'factory_bot_rails'
-  gem 'shoulda-matchers'
+  gem 'database_cleaner', '~> 1.7.0'
+  gem 'factory_bot_rails', '~> 5.1.1'
+  gem 'shoulda-matchers', '~> 4.1.2'
+  gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 end
 
 group :development do
