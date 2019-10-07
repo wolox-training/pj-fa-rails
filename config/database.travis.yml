@@ -1,0 +1,8 @@
+test: &test
+  adapter: postgresql
+  encoding: utf8
+  database: pj_db_test
+  username: postgres
+
+
+
