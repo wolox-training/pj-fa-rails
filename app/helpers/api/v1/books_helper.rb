@@ -1,2 +1,6 @@
-module Api::V1::BooksHelper
+module Api
+  module V1
+    class BooksHelper
+    end
+  end
 end
