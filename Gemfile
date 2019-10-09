@@ -43,6 +43,14 @@ group :development, :test do
   gem 'rubocop', '~> 0.59.2', require: false
 end
 
+group :test do
+  gem 'rspec-rails', '~> 3.8'
+  gem 'database_cleaner', '~> 1.7.0'
+  gem 'factory_bot_rails', '~> 5.1.1'
+  gem 'shoulda-matchers', '~> 4.1.2'
+  gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+end
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'listen', '>= 3.0.5', '< 3.2'
