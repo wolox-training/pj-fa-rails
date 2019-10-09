@@ -1,7 +1,7 @@
 module Api
   module V1
     class BooksController < ApplicationController
-      def index 
+      def index
         render_paginated Book.includes(:rents).all
       end
 
