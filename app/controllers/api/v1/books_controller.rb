@@ -1,14 +1,14 @@
 module Api
   module V1
     class BooksController < ApplicationController
-      def index
-        @books = Book.all
-        render_paginated json: @books
+      def index 
+        render_paginated Book.includes(:rents).all
       end
 
       def show
-        @book = Book.find(params[:id])
-        render json: @book
+        render json: Book.includes(:rents).find(params[:id])
+      rescue StandardError => exception
+        rescue_with_handler(exception) || raise
       end
     end
   end
