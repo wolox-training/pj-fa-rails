@@ -1,4 +1,4 @@
-shared_context 'Authenticated User' do
+shared_context 'with Authenticated User' do
   let(:user) { create(:user) }
 
   before do
