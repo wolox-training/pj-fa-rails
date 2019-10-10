@@ -33,6 +33,9 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'devise_token_auth', '~> 1.1.3'
+gem 'active_model_serializers', '~> 0.10.0'
+gem 'wor-paginate', '~> 0.1.6'
+gem 'versionist', '~> 2.0.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
