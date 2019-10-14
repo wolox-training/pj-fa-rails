@@ -5,7 +5,7 @@ describe Api::V1::BooksController, type: :controller do
 
   describe 'GET #index' do
     context 'when fetching all the books' do
-      let!(:books) { create_list(:book, 3) }
+      let(:books) { create_list(:book, 3) }
 
       before do
         get :index
@@ -26,7 +26,7 @@ describe Api::V1::BooksController, type: :controller do
 
   describe 'GET #show' do
     context 'when fetching a book' do
-      let!(:book) { create(:book) }
+      let(:book) { create(:book) }
 
       before do
         get :show, params: { id: book.id }
@@ -40,6 +40,22 @@ describe Api::V1::BooksController, type: :controller do
 
       it 'responds with 200 status' do
         expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context 'when the book is invalid' do
+      let(:book_id) { 1000 }
+
+      before do
+        get :show, params: { id: book_id }
+      end
+
+      it 'returns status code 404' do
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it 'returns a not found message' do
+        expect(response.body).to match("{\"error\":\"Couldn't find Book with 'id'=1000\"}")
       end
     end
   end
