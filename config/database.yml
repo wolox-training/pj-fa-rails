@@ -82,4 +82,6 @@ test:
 #
 production:
   <<: *default
-  database: pj_db_production
+  database: d2hioesjo8bkel
+  user: uyyrjdrlqpwmnp
+  password: 20d91c19bd9ab5ed2b0d687be1391af031d5b749df6f06f397215feb652d961d
