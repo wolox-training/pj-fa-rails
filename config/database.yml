@@ -82,6 +82,6 @@ test:
 #
 production:
   <<: *default
-  database: d2hioesjo8bkel
-  user: uyyrjdrlqpwmnp
-  password: 20d91c19bd9ab5ed2b0d687be1391af031d5b749df6f06f397215feb652d961d
+  database: <%= ENV['NAME_DB'] %>
+  user: <%= ENV['USER_DB'] %>
+  password: <%= ENV['PASSWORD_DB'] %>
