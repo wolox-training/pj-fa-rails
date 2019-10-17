@@ -4,6 +4,6 @@ Metrics/BlockLength:
 Documentation:
   Enabled: false
 LineLength:
-  Max: 99
+  Max: 150
 Style/FrozenStringLiteralComment:
   Enabled: false
