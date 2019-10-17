@@ -59,7 +59,7 @@ describe Api::V1::RentsController do
     end
 
     context 'when request is invalid' do
-      let(:book_id) { create(:book).id }
+      let(:book_id) { nil }
 
       it 'returns error messages' do
         expect(http_request.body['error']).to be_present
