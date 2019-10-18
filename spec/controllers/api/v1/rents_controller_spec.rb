@@ -24,37 +24,34 @@ describe Api::V1::RentsController do
   end
 
   describe 'POST #create' do
-    subject(:http_request) { post :create, params: { user_id: user.id, book_id: book_id, start_date: '2019-10-07', end_date: '2019-10-08' } }
+    subject(:http_request) { post :create, params: valid_attributes }
+    let(:valid_attributes) { { user_id: user.id, book_id: book_id, start_date: '2019-10-07', end_date: '2019-10-08' } }
+
+    before do
+      http_request
+    end
 
     context 'when request is valid' do
       let(:book_id) { create(:book).id }
-      let(:rent) { create(:rent, user_id: user.id, book_id: book_id, start_date: '2019-10-07', end_date: '2019-10-08') }
-      let(:valid_attributes) { { user_id: user.id, book_id: book_id, start_date: '2019-10-07', end_date: '2019-10-08' } }
 
-      it 'responses with the rent json' do
-        expect(http_request.body.to_json) =~ RentSerializer.new(
-          rent, root: false
-        ).to_json
+      it 'responds with 201 status' do
+        expect(http_request).to have_http_status(:created)
       end
 
-      it 'responds with 200 status' do
-        expect(http_request).to have_http_status(:ok)
+      it 'when create the response.body valid book' do
+        expect(JSON.parse(response.body)['book']['id']).to eq(valid_attributes[:book_id])
       end
 
-      it 'when create the rent valid book' do
-        expect(rent.book_id).to eq(valid_attributes[:book_id])
+      it 'when create the response.body valid user' do
+        expect(JSON.parse(response.body)['user']['id']).to eq(valid_attributes[:user_id])
       end
 
-      it 'when create the rent valid user' do
-        expect(rent.user_id).to eq(valid_attributes[:user_id])
+      it 'when create the response.body valid start date' do
+        expect(JSON.parse(response.body)['from']) =~ valid_attributes[:start_date]
       end
 
-      it 'when create the rent valid start date' do
-        expect(rent.start_date) =~ valid_attributes[:start_date]
-      end
-
-      it 'when create the rent valid end date' do
-        expect(rent.end_date) =~ valid_attributes[:end_date]
+      it 'when create the response.body valid end date' do
+        expect(JSON.parse(response.body)['to']) =~ valid_attributes[:end_date]
       end
     end
 
