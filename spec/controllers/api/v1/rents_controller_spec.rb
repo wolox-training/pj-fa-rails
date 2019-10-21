@@ -8,7 +8,13 @@ describe Api::V1::RentsController do
 
     context 'when fetching all the rents' do
       let(:book) { create(:book) }
-      let(:rents) { create_list(:rent, 3, user_id: user.id, book_id: book.id, start_date: Time.zone.today, end_date: Date.tomorrow) }
+      # These breaklines is to rubocop
+      let(:rents) do
+        create_list(
+          :rent, 3,
+          user_id: user.id, book_id: book.id, start_date: Time.zone.today, end_date: Date.tomorrow
+        )
+      end
 
       it 'reponses with rents json' do
         expected = ActiveModel::Serializer::CollectionSerializer.new(
@@ -25,7 +31,10 @@ describe Api::V1::RentsController do
 
   describe 'POST #create' do
     subject(:http_request) { post :create, params: valid_attributes }
-    let(:valid_attributes) { { user_id: user.id, book_id: book_id, start_date: '2019-10-07', end_date: '2019-10-08' } }
+
+    let(:valid_attributes) do
+      { user_id: user.id, book_id: book_id, start_date: '2019-10-07', end_date: '2019-10-08' }
+    end
 
     before do
       http_request

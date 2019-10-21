@@ -1,5 +1,5 @@
 class RentSerializer < ActiveModel::Serializer
-  attributes :id, :from, :to, :returned_at
+  attributes :id, :from, :to
   belongs_to :book
   belongs_to :user
 
@@ -10,5 +10,4 @@ class RentSerializer < ActiveModel::Serializer
   def to
     object.end_date
   end
-
 end
