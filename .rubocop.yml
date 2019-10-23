@@ -1,3 +1,6 @@
+require: rubocop-rspec
+Metrics/BlockLength:
+  ExcludedMethods: ['describe', 'context']
 Documentation:
   Enabled: false
 LineLength:
