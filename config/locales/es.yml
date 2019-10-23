@@ -1,0 +1,8 @@
+es:
+  subject_rent_email: "Tu reservación ha sido creada exitosamente."
+  created_at: "Fecha creación"
+  book_title: "Título"
+  book_year: "Año"
+  book_publisher: "Editorial"
+  rent_start_date: "Desde"
+  rent_end_date: "Hasta"
