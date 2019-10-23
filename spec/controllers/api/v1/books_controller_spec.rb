@@ -9,11 +9,15 @@ describe Api::V1::BooksController do
     context 'when fetching all the books' do
       let(:books) { create_list(:book, 3) }
 
+      before do
+        http_request
+      end
+
       it 'reponses with books json' do
         expected = ActiveModel::Serializer::CollectionSerializer.new(
           books, each_serializer: BookSerializer
         ).to_json
-        expect(http_request.body.to_json) =~ JSON.parse(expected)
+        expect(response.body) =~ JSON.parse(expected)
       end
 
       it 'responds with 200 status' do
