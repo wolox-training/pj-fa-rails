@@ -35,11 +35,11 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :user_name => ENV["SMTP_USERNAME"],
-    :password => ENV["SMTP_PASSWORD"],
-    :address => ENV["SMTP_ADDRESS"],
-    :domain => ENV["SMTP_DOMAIN"],
-    :port => ENV["SMTP_PORT"],
+    :user_name => Rails.application.secrets.smtp_username,
+    :password => Rails.application.secrets.smtp_password,
+    :address => Rails.application.secrets.smtp_address,
+    :domain => Rails.application.secrets.smtp_domain,
+    :port => Rails.application.secrets.smtp_port,
     :authentication => :cram_md5
   }
   # Print deprecation notices to the Rails logger.

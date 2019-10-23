@@ -11,7 +11,7 @@ env:
     - RUBY_GC_MALLOC_LIMIT=90000000
     - RUBY_GC_HEAP_FREE_SLOTS=200000
     - SECURITY_SECRET_TOKEN=traviscitraviscitraviscitraviscitravisci
-    - SECRET_KEY='d057f991c850471284d91b23843bcd4442109c27c5d408b509a586b5ee7dfd8ef95a0e1bc19d2f7383ecf8ac372e06dbacc6dc954142d074603a840de3a18d62'
+    - SECRET_KEY='qwerty'
 
 services:
   - postgresql
