@@ -3,10 +3,6 @@ class ApplicationMailer < ActionMailer::Base
   layout 'mailer'
 
   def locale(user)
-    if user
-      I18n.locale = user.locale || I18n.default_locale
-    else
-      super
-    end
+    I18n.locale = user.locale || I18n.default_locale
   end
 end
