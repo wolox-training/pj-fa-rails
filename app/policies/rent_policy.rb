@@ -4,7 +4,7 @@ class RentPolicy < ApplicationPolicy
   end
 
   def index?
-   record.count
+    record.present?
   end
 
   class Scope < Scope
