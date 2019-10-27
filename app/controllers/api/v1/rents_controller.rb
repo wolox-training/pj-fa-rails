@@ -11,7 +11,7 @@ module Api
         rent = @current_user.rents.new(rent_params)
         authorize rent
         rent.save!
-        RentMailer.new_rent_send(rent.id).deliver_later
+        #RentMailer.new_rent_send(rent.id).deliver_later
         render json: rent, status: :created
       end
 

@@ -2,7 +2,9 @@ module Api
   module V1
     class BooksController < ApplicationController
       def index
-        render_paginated Book.all
+        books = policy_scope(Book)
+        authorize books
+        render_paginated books
       end
 
       def show
