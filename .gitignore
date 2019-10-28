@@ -3,3 +3,5 @@
 
 .DS_Store
 .byebug_history
+.env
+dump.rdb
