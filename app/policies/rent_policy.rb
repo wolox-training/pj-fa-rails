@@ -1,6 +1,6 @@
 class RentPolicy < ApplicationPolicy
   def create?
-    record.present?
+    user.present? && user == record.user
   end
 
   class Scope < Scope
