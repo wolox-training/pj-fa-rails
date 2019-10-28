@@ -3,9 +3,7 @@ module Api
     class RentsController < ApplicationController
       before_action :authenticate_user!
       def index
-        rents = policy_scope(Rent)
-        authorize rents
-        render_paginated rents
+        render_paginated policy_scope(Rent)
       end
 
       def create
