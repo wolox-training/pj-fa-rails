@@ -1,6 +1,7 @@
 module Api
   module V1
     class RentsController < ApplicationController
+      before_action :authenticate_user!
       def index
         rents = policy_scope(Rent)
         authorize rents

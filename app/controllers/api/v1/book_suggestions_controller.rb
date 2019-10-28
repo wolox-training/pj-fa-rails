@@ -8,7 +8,7 @@ module Api
       private
 
       def book_suggestion_params
-        params.permit(:synopsis, :price, :author, :title, :link, :publisher, :year)
+        params.permit(:synopsis, :price, :author, :title, :link, :publisher, :year, :user_id)
       end
     end
   end
