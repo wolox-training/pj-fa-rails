@@ -1,9 +1,5 @@
 class RentPolicy < ApplicationPolicy
   def create?
-    user.present? && user == record.user
-  end
-
-  def index?
     record.present?
   end
 
