@@ -2,9 +2,7 @@ module Api
   module V1
     class RentsController < ApplicationController
       def index
-        rents = policy_scope(Rent)
-        authorize rents
-        render_paginated rents
+        render_paginated policy_scope(Rent)
       end
 
       def create
