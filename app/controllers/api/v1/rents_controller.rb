@@ -2,6 +2,7 @@ module Api
   module V1
     class RentsController < ApplicationController
       before_action :authenticate_user!
+
       def index
         render_paginated policy_scope(Rent)
       end
