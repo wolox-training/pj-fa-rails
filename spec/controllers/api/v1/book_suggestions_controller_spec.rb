@@ -65,7 +65,7 @@ describe Api::V1::BookSuggestionsController do
       it 'Do not creates a new book suggestions' do
         expect do
           post :create, params: valid_attributes
-        end.to_not change(BookSuggestion, :count)
+        end.not_to change(BookSuggestion, :count)
       end
     end
   end
