@@ -43,6 +43,12 @@ describe Api::V1::BookSuggestionsController do
       it 'when create the response.body valid year' do
         expect(JSON.parse(response.body)['year']).to eq(valid_attributes[:year])
       end
+
+      it 'creates a new book suggestions' do
+        expect do
+          post :create, params: valid_attributes
+        end.to change { BookSuggestion.count }.by(1)
+      end
     end
 
     context 'when request is invalid' do
@@ -54,6 +60,12 @@ describe Api::V1::BookSuggestionsController do
 
       it 'responds with 422 status' do
         expect(http_request).to have_http_status(:unprocessable_entity)
+      end
+
+      it 'Do not creates a new book suggestions' do
+        expect do
+          post :create, params: valid_attributes
+        end.to change { BookSuggestion.count }.by(0)
       end
     end
   end
