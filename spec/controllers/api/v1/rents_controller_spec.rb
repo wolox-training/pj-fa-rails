@@ -33,7 +33,7 @@ describe Api::V1::RentsController do
     subject(:http_request) { post :create, params: valid_attributes }
 
     let(:valid_attributes) do
-      { user_id: user.id, book_id: book_id, start_date: '2019-10-07', end_date: '2019-10-08' }
+      { user_id: user.id, book_id: book_id, start_date: Time.zone.today, end_date: Date.tomorrow }
     end
 
     before do

@@ -5,49 +5,57 @@ describe Api::V1::BookSuggestionsController do
     subject(:http_request) { post :create, params: valid_attributes }
 
     let(:valid_attributes) do
-      { user_id: user_id, synopsis: 'test_synopsis', author: 'test_author',
-        title: 'test_title', link: 'test_link', publisher: 'test_publisher',
-        year: '1987', price: 5000 }
+      {
+        user_id: user_id,
+        synopsis: Faker::String.random(length: 8),
+        author: Faker::Book.author,
+        title: Faker::Book.title,
+        link: Faker::String.random(length: 8),
+        publisher: Faker::Book.publisher,
+        year: Faker::String.random(length: 4),
+        price: Faker::Number.decimal(l_digits: 3, r_digits: 2)
+      }
     end
 
-    before do
-      http_request
-    end
-
-    context 'when request is valid' do
+    context 'when the request is valid' do
       let(:user_id) { create(:user).id }
 
       it 'responds with 201 status' do
+        http_request
         expect(http_request).to have_http_status(:created)
       end
 
-      it 'when create the response.body valid user' do
+      it 'returns the correct user_id' do
+        http_request
         expect(JSON.parse(response.body)['user_id']).to eq(valid_attributes[:user_id])
       end
 
-      it 'when create the response.body valid author' do
+      it 'returns the correct author' do
+        http_request
         expect(JSON.parse(response.body)['author']).to eq(valid_attributes[:author])
       end
 
-      it 'when create the response.body valid title' do
+      it 'returns the correct title' do
+        http_request
         expect(JSON.parse(response.body)['title']).to eq(valid_attributes[:title])
       end
 
-      it 'when create the response.body valid link' do
+      it 'returns the correct link' do
+        http_request
         expect(JSON.parse(response.body)['link']).to eq(valid_attributes[:link])
       end
 
-      it 'when create the response.body valid publisher' do
+      it 'returns the correct publisher' do
+        http_request
         expect(JSON.parse(response.body)['publisher']).to eq(valid_attributes[:publisher])
       end
-      it 'when create the response.body valid year' do
+      it 'returns the correct year' do
+        http_request
         expect(JSON.parse(response.body)['year']).to eq(valid_attributes[:year])
       end
 
       it 'creates a new book suggestions' do
-        expect do
-          post :create, params: valid_attributes
-        end.to change(BookSuggestion, :count)
+        expect { http_request }.to change(BookSuggestion, :count)
       end
     end
 
@@ -55,17 +63,18 @@ describe Api::V1::BookSuggestionsController do
       let(:user_id) { nil }
 
       it 'returns error messages' do
+        http_request
         expect(http_request.body['error']).to be_present
       end
 
       it 'responds with 422 status' do
+        http_request
         expect(http_request).to have_http_status(:unprocessable_entity)
       end
 
       it 'Do not creates a new book suggestions' do
-        expect do
-          post :create, params: valid_attributes
-        end.not_to change(BookSuggestion, :count)
+        http_request
+        expect { http_request }.not_to change(BookSuggestion, :count)
       end
     end
   end
