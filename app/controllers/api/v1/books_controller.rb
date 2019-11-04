@@ -1,6 +1,8 @@
 module Api
   module V1
     class BooksController < ApplicationController
+      before_action :authenticate_user!
+
       def index
         render_paginated policy_scope(Book)
       end
