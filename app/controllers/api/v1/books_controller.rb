@@ -10,6 +10,10 @@ module Api
       def show
         render json: Book.find(params[:id])
       end
+
+      def open_library
+        render json: OpenLibraryService.execute(params[:isbn])
+      end
     end
   end
 end

@@ -29,6 +29,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'redis', '~> 4.0'
 gem 'sidekiq', '~> 6.0.2'
 gem 'pundit', '~> 2.1.0'
+
+gem 'httparty', '~> 0.17.1'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
