@@ -1,14 +1,13 @@
 class OpenLibraryService
   def self.execute(isbn)
-    book = HTTParty.get(
-      "https://openlibrary.org/api/books?bibkeys=ISBN:#{isbn}&jscmd=data&format=json"
-    )
-    data = {}
-    data[:isbn] = isbn
-    data[:title] = book["ISBN:#{isbn}"]['title']
-    data[:subtitle] = book["ISBN:#{isbn}"]['subtitle']
-    data[:number_of_pages] = book["ISBN:#{isbn}"]['number_of_pages']
-    data[:authors] = book["ISBN:#{isbn}"]['authors']
-    data
+    include HTTParty
+    base_uri 'https://openlibrary.org/api/books'
+    response = get('/', query: { bibkeys: "ISBN:#{isbn}", jscmd: 'data', format: 'json' })
+
+    if response["ISBN:#{isbn}"].present?
+      response["ISBN:#{isbn}"].slice('title', 'subtitle', 'number_of_pages', 'authors')
+    else
+      Exception.new('Book not Found')
+    end
   end
 end

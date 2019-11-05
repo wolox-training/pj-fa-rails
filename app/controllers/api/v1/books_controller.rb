@@ -11,7 +11,7 @@ module Api
         render json: Book.find(params[:id])
       end
 
-      def open_library
+      def search_book
         render json: OpenLibraryService.execute(params[:isbn])
       end
     end
