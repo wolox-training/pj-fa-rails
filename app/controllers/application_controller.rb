@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   def render_runtime_response(exception)
     render json: { error: exception.message }, status: :not_found
   end
-  
+
   def user_not_authorized(exception)
     render json: { error: exception.message }, status: :unauthorized
   end
