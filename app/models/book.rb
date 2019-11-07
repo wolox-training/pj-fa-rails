@@ -4,4 +4,5 @@ class Book < ApplicationRecord
 
   # Validations
   validates :gender, :author, :image, :title, :publisher, :year, presence: true
+  validates :title, length: { maximum: 25 }
 end
