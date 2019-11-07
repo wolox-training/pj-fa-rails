@@ -1,13 +1,11 @@
 class OpenLibraryService
+  include HTTParty
+  base_uri 'https://openlibrary.org/api/books'
+
   def self.execute(isbn)
-    include HTTParty
-    base_uri 'https://openlibrary.org/api/books'
     response = get('/', query: { bibkeys: "ISBN:#{isbn}", jscmd: 'data', format: 'json' })
 
-    if response["ISBN:#{isbn}"].present?
-      response["ISBN:#{isbn}"].slice('title', 'subtitle', 'number_of_pages', 'authors')
-    else
-      Exception.new('Book not Found')
-    end
+    raise ActiveRecord::RecordNotFound, 'Book not found' if response.parsed_response.empty?
+    response["ISBN:#{isbn}"].slice('title', 'subtitle', 'number_of_pages', 'authors')
   end
 end
