@@ -47,6 +47,7 @@ group :development, :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem 'rubocop', '~> 0.59.2', require: false
+  gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 end
 
 group :test do
@@ -54,7 +55,6 @@ group :test do
   gem 'database_cleaner', '~> 1.7.0'
   gem 'factory_bot_rails', '~> 5.1.1'
   gem 'shoulda-matchers', '~> 4.1.2'
-  gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
   gem 'rubocop-rspec', '~> 1.30.0'
 end
 
