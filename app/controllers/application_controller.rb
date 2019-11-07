@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+  rescue_from RuntimeError, with: :render_runtime_response
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def render_not_found_response(exception)
@@ -15,6 +16,10 @@ class ApplicationController < ActionController::Base
     render json: { error: exception.message }, status: :unprocessable_entity
   end
 
+  def render_runtime_response(exception)
+    render json: { error: exception.message }, status: :not_found
+  end
+  
   def user_not_authorized(exception)
     render json: { error: exception.message }, status: :unauthorized
   end
