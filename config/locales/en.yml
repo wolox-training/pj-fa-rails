@@ -6,3 +6,4 @@ en:
   book_publisher: "Book publisher"
   rent_start_date: "Rent from"
   rent_end_date: "Rent to"
+  subject_expire_rent_email: "Your reservation has been expired."
